@@ -1,0 +1,36 @@
+{
+  "name": "sysmon-v2",
+  "version": "2.0.0",
+  "description": "Self-hosted system monitor for edge devices: REST API for live stats, history and alerts with Telegram push notifications. Built for Termux/Android and any Linux box.",
+  "main": "src/server.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test test/"
+  },
+  "keywords": [
+    "system-monitor",
+    "termux",
+    "android",
+    "server-monitoring",
+    "rest-api",
+    "telegram",
+    "alerting",
+    "edge",
+    "self-hosted"
+  ],
+  "license": "MIT",
+  "author": "coxess",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coxess/sysmon-v2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/coxess/sysmon-v2/issues"
+  },
+  "homepage": "https://github.com/coxess/sysmon-v2#readme"
+}

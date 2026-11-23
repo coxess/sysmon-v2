@@ -1,0 +1,19 @@
+#!/bin/sh
+# runit service for sysmon-v2 on Termux.
+# Install:  mkdir -p ~/service/sysmon && cp deploy/runit/service.run ~/service/sysmon/run
+# Env file: ~/.config/sysmon/env  (see .env.example)
+
+SYSMON_DIR="$HOME/sysmon-v2"
+ENV_FILE="$HOME/.config/sysmon/env"
+LOG_PREFIX="[sysmon]"
+
+[ -f "$ENV_FILE" ] && . "$ENV_FILE" && export $(grep -vE '^\s*(#|$)' "$ENV_FILE" | cut -d= -f1)
+
+export SYSMON_HOME="${SYSMON_HOME:-$SYSMON_DIR}"
+cd "$SYSMON_DIR" || exit 111
+
+# Keep Android from freezing the process.
+command -v termux-wake-lock >/dev/null 2>&1 && termux-wake-lock
+
+PREFIX="${PREFIX:-/data/data/com.termux/files/usr}"
+exec "$PREFIX/bin/node" "$SYSMON_DIR/src/server.js"
